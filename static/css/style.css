@@ -800,7 +800,7 @@
   text-transform: uppercase;
 }
 .breadcrumb-list > li::before {
-  content: "_";
+  content: "";
   left: 0;
   color: #666666;
   transition: all 0.3s ease 0s;
