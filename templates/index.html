@@ -116,7 +116,7 @@
                   data-wow-duration="2s"
                   data-wow-delay="0.5s"
                 >
-                  <h6 class="slider2-title-1">{{ data.price }}</h6>
+                  <h6 class="slider2-title-1">Best price : {{ data.price }}</h6>
                 </div>
                 <div
                   class="wow fadeInUp"
@@ -146,7 +146,7 @@
                   data-wow-duration="1s"
                   data-wow-delay="2.5s"
                 >
-                  <a href="#" class="button extra-small button-black">
+                  <a href="single-product.html/{{ data.id }}" class="button extra-small button-black">
                     <span class="text-uppercase">Buy now</span>
                   </a>
                 </div>
@@ -183,17 +183,18 @@
               <!-- banner-item start -->
               <div class="col-lg-4 col-md-6">
                 <div class="banner-item banner-2">
+                    {% for product in context.banner %}
                   <div class="banner-img">
-                    <a href="#"
-                      ><img src="../static/img/banner/2.jpg" alt=""
+                    <a href="single-product.html/{{ product.id }}"
+                      ><img src="{{ product.image }}" alt=""
                     /></a>
                   </div>
                   <h3 class="banner-title-2">
-                    <a href="#">sony smartphone</a>
+                    <a href="single-product.html/{{ product.id }}">sony smartphone</a>
                   </h3>
-                  <h3 class="pro-price">$ 869.00</h3>
+                  <h3 class="pro-price">{{ product.price }}</h3>
                   <div class="banner-button">
-                    <a href="#"
+                    <a href="single-product.html/{{ product.id }}"
                       >Shop now <i class="zmdi zmdi-long-arrow-right"></i
                     ></a>
                   </div>
@@ -257,6 +258,7 @@
                   </div>
                 </div>
               </div>
+              {% endfor %}
               <!-- banner-item end -->
             </div>
           </div>
