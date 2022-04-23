@@ -1,6 +1,7 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, jsonify, render_template, request
 from flask_restful import Api
 
+from data.index import slider
 
 app = Flask(__name__)
 api = Api(app)
@@ -33,7 +34,10 @@ def contact_html():
 
 @app.route('/index.html')
 def index_html():
-    return render_template('index.html')
+    context = {
+        'slider': slider
+    }
+    return render_template('index.html', context=context)
 
 
 @app.route('/login.html')
