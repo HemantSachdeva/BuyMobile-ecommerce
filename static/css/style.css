@@ -174,8 +174,7 @@
   margin-bottom: 20px;
   z-index: 9;
 }
-.action-button {
-}
+
 .action-button > li {
   display: inline-block;
   margin-right: 10px;
@@ -208,8 +207,6 @@
 /* -------------------------------------
     7.3 Up comming product section
 ------------------------------------- */
-.up-comming-pro {
-}
 .up-comming-pro-img {
   width: 47.3%;
 }
@@ -256,8 +253,6 @@
 /* -------------------------------------
     7.4 Banner section
 ------------------------------------- */
-.banner {
-}
 .banner-item {
   position: relative;
 }
@@ -308,8 +303,7 @@
 .pro-tab-menu-2 {
   justify-content: center;
 }
-.pro-tab-menu > ul {
-}
+
 .pro-tab-menu ul li {
   display: inline-block;
   margin-left: 30px;
@@ -754,8 +748,6 @@
 /* -------------------------------------
     9.1 Breadcrumbs section
 ------------------------------------- */
-.breadcrumbs-section {
-}
 .breadcrumbs {
   background: #f6f6f6 url("img/breadcrumb/1.png") no-repeat scroll center center;
 }
@@ -1006,8 +998,6 @@
   padding: 0;
   text-align: left;
   width: 50%;
-}
-.price_slider_amount > input#amount {
 }
 .ui-widget-content {
   background: #eee none repeat scroll 0 0;
@@ -1715,8 +1705,6 @@ table {
 ===================================*/
 .about-photo img {
   width: 100%;
-}
-.about-description {
 }
 .about-description p {
   color: #666;
