@@ -1,3 +1,5 @@
+from random import sample
+
 from flask import Flask, jsonify, render_template, request
 from flask_restful import Api
 
@@ -38,7 +40,11 @@ def contact_html():
 def index_html():
     context = {
         'slider': slider,
-        'new_products': new_products
+        'new_products': new_products,
+        'popular_products': sample(new_products, len(new_products)),  # random sample
+        'new_arrival': new_products,
+        'best_seller': sample(new_products, len(new_products)),
+        'special_offer': sample(new_products, len(new_products))
     }
     return render_template('index.html', context=context)
 
