@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, render_template, request
 from flask_restful import Api
 
-from data.index import banner, slider
+from data.index import new_products, slider
 from data.login import authenticate_user, check_user
 from data.register import create_user
 
@@ -38,7 +38,7 @@ def contact_html():
 def index_html():
     context = {
         'slider': slider,
-        'banner': banner
+        'new_products': new_products
     }
     return render_template('index.html', context=context)
 
@@ -107,7 +107,7 @@ def shop_html():
 
 @app.route('/single-product.html/<int:id>')
 def single_product(id):
-    for product in banner:
+    for product in new_products:
         if product.get("id") == id:
             context = {
                 "product": product
