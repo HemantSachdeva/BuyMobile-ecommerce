@@ -8138,7 +8138,7 @@ jQuery(document).ready(function ($) {
         tp_stylesheet = $this.data("style");
       $(".style-customizer .styleChange .selected").removeClass("selected");
       $this.addClass("selected");
-      link.attr("href", "css/color/" + tp_stylesheet + ".css");
+      link.attr("href", "../static/css/color/" + tp_stylesheet + ".css");
       if ($(".swicher-title-page-dark").length > 0) {
         document.getElementById("logo_img").src =
           "images/customizer/logo/logo_dark_swicher-title_" +
@@ -8302,7 +8302,7 @@ jQuery(document).ready(function ($) {
     $(
       '.style-customizer .styleChange li[data-style="' + tp_stylesheet + '"]'
     ).addClass("selected");
-    link.attr("href", "css/color/" + tp_stylesheet + ".css");
+    link.attr("href", "../static/css/color/" + tp_stylesheet + ".css");
     if ($("#logo_img").length > 0) {
       document.getElementById("logo_img").src =
         "images/customizer/logo/logo_" + tp_stylesheet + ".png";
