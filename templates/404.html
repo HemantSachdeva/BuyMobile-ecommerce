@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Subas || Login</title>
+    <title>Subas || 404</title>
     <meta
       name="description"
       content="Subas – Electronics Store eCommerce HTML Template is a electronics, electronics store, mobile phone business with clean, modern and elegant design. It has a fully responsive width adjusts automatically to any screen size or resolution. It has a fully responsive width adjusts automatically to any screen size or resolution."
@@ -94,10 +94,12 @@
             <div class="row">
               <div class="col-lg-12">
                 <div class="breadcrumbs-inner">
-                  <h1 class="breadcrumbs-title">Login</h1>
+                  <h1 class="breadcrumbs-title">404</h1>
                   <ul class="breadcrumb-list">
-                    <li><a href="index.html">Home</a></li>
-                    <li>Login</li>
+                    <li>
+                      <a href="index.html">Home</a>
+                    </li>
+                    <li>404</li>
                   </ul>
                 </div>
               </div>
@@ -109,44 +111,25 @@
 
       <!-- Start page content -->
       <div id="page-content" class="page-wrapper section">
-        <!-- LOGIN SECTION START -->
-        <div class="login-section mb-80">
+        <!-- ERROR SECTION START -->
+        <div class="error-section mb-80">
           <div class="container">
             <div class="row">
-              <div class="col-lg-6">
-                <div class="registered-customers">
+              <div class="col-lg-12">
+                <div class="error-404 box-shadow">
                   <h6 class="widget-title border-left mb-50">
-                    REGISTERED CUSTOMERS
+                    {% if error %} {{ error }} {% endif %}
                   </h6>
-                  <form action="login.html" method="POST">
-                    <div class="login-account p-30 box-shadow">
-                      <p>If you have an account with us, Please log in.</p>
-                      <input
-                        type="text"
-                        name="email"
-                        placeholder="Email Address"
-                        required
-                      />
-                      <input
-                        type="password"
-                        name="password"
-                        placeholder="Password"
-                        required
-                      />
-                      <p>
-                        <small><a href="#">Forgot our password?</a></small>
-                      </p>
-                      <button class="submit-btn-1 btn-hover-1" type="submit">
-                        login
-                      </button>
-                    </div>
-                  </form>
+                  <img src="../static/img/others/error.jpg" alt="" />
+                  <div class="go-to-btn btn-hover-2">
+                    <a onclick="history.back()">Go back</a>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <!-- LOGIN SECTION END -->
+        <!-- ERROR SECTION END -->
       </div>
       <!-- End page content -->
 
