@@ -2,7 +2,7 @@ import sqlite3
 from data.login import check_user
 
 
-def create_user(username, password, fname, lname, country, state, city, mobile, company):
+def create_user(username, password, fname, lname, country, state, city, mobile, company, is_logged_in: bool):
     """
     Create a user in the database
     :param username: username of the user
@@ -13,13 +13,15 @@ def create_user(username, password, fname, lname, country, state, city, mobile, 
     :param state: state of the user
     :param city: city of the user
     :param mobile: mobile of the user
+    :param company: company of the user
+    :param is_logged_in: is the user logged in
     :return: True if user is created, False if user already exists
     """
     conn = sqlite3.connect('data/database.db')
     c = conn.cursor()
     if not check_user(username):
-        c.execute("INSERT INTO users VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                  (username, password, fname, lname, country, state, city, mobile, company))
+        c.execute("INSERT INTO users VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                  (username, password, fname, lname, country, state, city, mobile, company, is_logged_in))
         conn.commit()
         conn.close()
         return True

@@ -88,12 +88,13 @@ def register_html():
         state = request.form.get('state')
         city = request.form.get('city')
         company = request.form.get('company')
+        is_logged_in = True
 
         if password == confirm_password:
             """`
             Create a user in the database if the username is not taken
             """
-            if create_user(username, password, fname, lname, country, state, city, mobile, company):
+            if create_user(username, password, fname, lname, country, state, city, mobile, company, is_logged_in):
                 return render_template('register_success.html')
             else:
                 return render_template('404.html', error='Username already exists')
