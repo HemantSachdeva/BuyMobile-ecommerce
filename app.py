@@ -1,14 +1,18 @@
 from random import sample
+from django.shortcuts import render
 
 from flask import Flask, jsonify, render_template, request
 from flask_restful import Api
 
+from data.add_to_cart import add_product_to_cart
 from data.index import new_products, slider
-from data.login import authenticate_user, check_user
+from data.login import authenticate_user, check_user, user_logged_in
 from data.register import create_user
 
 app = Flask(__name__)
 api = Api(app)
+
+usernames = ['hemant.evolver@gmail.com']
 
 
 @app.route('/')
@@ -31,9 +35,37 @@ def about_html():
     return render_template('about.html')
 
 
-@app.route('/cart.html')
-def cart_html():
-    return render_template('cart.html')
+@app.route('/cart.html', methods=['GET', 'POST'])
+@app.route('/cart/<int:product_id>', methods=['GET', 'POST'])
+@app.route('/cart/<int:product_id>/<int:quantity>', methods=['GET', 'POST'])
+def add_to_cart(product_id, quantity=1):
+    """
+    Add product to cart
+    :return:
+    """
+    if request.method == 'POST':
+        # check which user is logged in
+        for user in usernames:
+            if user_logged_in(user):
+                add_product_to_cart(user, product_id, quantity)
+
+                for product in new_products:
+                    if product['id'] == product_id:
+                        context = {
+                            "cart": [
+                                {
+                                    "id": product['id'],
+                                    "name": product['name'],
+                                    "brand": product['brand'],
+                                    "price": product['price'],
+                                    "image": product['image'],
+                                    "quantity": quantity
+                                }
+                            ]
+                        }
+                        return render_template('cart.html', context=context)
+
+    return render_template('cart.html', error="No product found")
 
 
 @app.route('/checkout.html')
@@ -95,6 +127,8 @@ def register_html():
             Create a user in the database if the username is not taken
             """
             if create_user(username, password, fname, lname, country, state, city, mobile, company, is_logged_in):
+                # storing usernames to check login sessions laters on
+                usernames.append(username)
                 return render_template('register_success.html')
             else:
                 return render_template('404.html', error='Username already exists')

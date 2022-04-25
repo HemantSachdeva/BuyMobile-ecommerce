@@ -35,3 +35,21 @@ def authenticate_user(username, password):
         return True
     else:
         return False
+
+
+def user_logged_in(username):
+    """
+    Check if user is logged in
+    :param username: username of the user
+    :return: True if user is logged in, False if user is not logged in
+    """
+    conn = sqlite3.connect('data/database.db')
+    c = conn.cursor()
+    c.execute("SELECT * FROM users WHERE username=? AND is_logged_in=?",
+              (username, 1))
+    user = c.fetchone()
+    conn.close()
+    if user:
+        return True
+    else:
+        return False

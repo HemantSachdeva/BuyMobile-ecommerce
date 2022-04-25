@@ -15,3 +15,18 @@ def create_user_table():
 
 
 create_user_table()
+
+
+def create_cart_table():
+    """
+    Create a table in the database
+    :return: None
+    """
+    conn = sqlite3.connect('data/database.db')
+    c = conn.cursor()
+    c.execute("CREATE TABLE IF NOT EXISTS cart (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, product_id INTEGER, quantity INTEGER)")
+    conn.commit()
+    conn.close()
+
+
+create_cart_table()
