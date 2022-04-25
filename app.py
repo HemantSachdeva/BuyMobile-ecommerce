@@ -12,8 +12,18 @@ api = Api(app)
 
 
 @app.route('/')
-def index():
-    return render_template('index.html')
+@app.route('/index.html')
+def index_html():
+    context = {
+        'slider': slider,
+        'new_products': new_products,
+        # random sample
+        'popular_products': sample(new_products, len(new_products)),
+        'new_arrival': new_products,
+        'best_seller': sample(new_products, len(new_products)),
+        'special_offer': sample(new_products, len(new_products))
+    }
+    return render_template('index.html', context=context)
 
 
 @app.route('/about.html')
@@ -34,19 +44,6 @@ def checkout_html():
 @app.route('/contact.html')
 def contact_html():
     return render_template('contact.html')
-
-
-@app.route('/index.html')
-def index_html():
-    context = {
-        'slider': slider,
-        'new_products': new_products,
-        'popular_products': sample(new_products, len(new_products)),  # random sample
-        'new_arrival': new_products,
-        'best_seller': sample(new_products, len(new_products)),
-        'special_offer': sample(new_products, len(new_products))
-    }
-    return render_template('index.html', context=context)
 
 
 @app.route('/login.html', methods=['GET', 'POST'])
