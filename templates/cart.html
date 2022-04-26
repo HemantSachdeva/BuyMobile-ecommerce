@@ -59,32 +59,7 @@
       <!-- END HEADER AREA -->
 
       <!-- START MOBILE MENU AREA -->
-      <div class="mobile-menu-area d-block d-lg-none section">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="mobile-menu">
-                <nav id="dropdown">
-                  <ul>
-                    <li>
-                      <a href="index.html">Home</a>
-                    </li>
-                    <li>
-                      <a href="shop.html">Products</a>
-                    </li>
-                    <li>
-                      <a href="about.html">About Us</a>
-                    </li>
-                    <li>
-                      <a href="contact.html">Contact</a>
-                    </li>
-                  </ul>
-                </nav>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      {% include 'mobile_menu_area.html' %}
       <!-- END MOBILE MENU AREA -->
 
       <!-- BREADCRUMBS SETCTION START -->
@@ -96,7 +71,7 @@
                 <div class="breadcrumbs-inner">
                   <h1 class="breadcrumbs-title">Shopping Cart</h1>
                   <ul class="breadcrumb-list">
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="/index.html">Home</a></li>
                     <li>Shopping Cart</li>
                   </ul>
                 </div>
@@ -198,7 +173,7 @@
                   <!-- checkout start -->
                   <div class="tab-pane" id="checkout">
                     <div class="checkout-content box-shadow p-30">
-                      <form action="#">
+                      <form action="/order.html", method="post">
                         <div class="row">
                           <!-- billing details -->
                           <div class="col-md-6">
@@ -209,10 +184,12 @@
                               <input
                                 type="text"
                                 placeholder="Your Name Here..."
+                                required
                               />
                               <input
                                 type="text"
                                 placeholder="Email address here..."
+                                required
                               />
                               <input type="text" placeholder="Phone here..." />
                               <input
@@ -222,10 +199,12 @@
                               <input
                                 type="text"
                                 placeholder="Country name here..."
+                                required
                               />
                               <textarea
                                 class="custom-textarea"
                                 placeholder="Your address here..."
+                                required
                               ></textarea>
                             </div>
                           </div>
@@ -236,6 +215,11 @@
                                 our order
                               </h6>
                               <table>
+                                  {% if error %}
+                                    <tr>
+                                        <td colspan="5">{{ error }}</td>
+                                    </tr>
+                                  {% else %}
                                   {% for product in context.cart %}
                                 <tr>
                                   <td class="td-title-1">
@@ -254,6 +238,7 @@
                                     <td class="order-total-price">{{ product.price }}</td>
                                 </tr>
                                 {% endfor %}
+                                {% endif %}
                               </table>
                             </div>
                             <!-- payment-method -->
@@ -365,15 +350,13 @@
                               </div>
                             </div>
                             <!-- payment-method end -->
-                            <a href="/order.html">
                             <button
                               class="submit-btn-1 mt-30 btn-hover-1"
-                                type="button"
+                                type="submit"
 
                             >
                               place order
                             </button>
-                        </a>
                           </div>
                         </div>
                       </form>

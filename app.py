@@ -102,7 +102,7 @@ def my_account_html():
     return render_template('my-account.html')
 
 
-@app.route('/order.html')
+@app.route('/order.html', methods=['GET', 'POST'])
 def order_html():
     return render_template('order.html')
 
@@ -140,7 +140,10 @@ def register_html():
 
 @app.route('/shop.html')
 def shop_html():
-    return render_template('shop.html')
+    context = {
+        'products': new_products
+    }
+    return render_template('shop.html', context=context)
 
 
 @app.route('/single-product.html/<int:id>')
