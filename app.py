@@ -1,10 +1,10 @@
 from random import sample
-from django.shortcuts import render
 
 from flask import Flask, jsonify, render_template, request
 from flask_restful import Api
 
 from data.add_to_cart import add_product_to_cart
+from data.contact import address, email, phone
 from data.index import new_products, slider
 from data.login import authenticate_user, check_user, user_logged_in
 from data.register import create_user
@@ -75,7 +75,12 @@ def checkout_html():
 
 @app.route('/contact.html')
 def contact_html():
-    return render_template('contact.html')
+    context = {
+        'address': address,
+        'phone': phone,
+        'email': email
+    }
+    return render_template('contact.html', context=context)
 
 
 @app.route('/login.html', methods=['GET', 'POST'])
