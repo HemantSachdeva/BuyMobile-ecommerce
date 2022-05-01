@@ -12,7 +12,7 @@ from data.register import create_user
 app = Flask(__name__)
 api = Api(app)
 
-usernames = ['hemant.evolver@gmail.com']
+usernames = []
 
 
 @app.route('/')
@@ -65,7 +65,7 @@ def add_to_cart(product_id, quantity=1):
                         }
                         return render_template('cart.html', context=context)
 
-    return render_template('cart.html', error="No product found")
+    return render_template('cart.html', error="No product found, check if you are logged in?")
 
 
 @app.route('/checkout.html')
@@ -88,6 +88,7 @@ def login_html():
         password = request.form.get('password')
         if check_user(username):
             if authenticate_user(username, password):
+                usernames.append(username)
                 return render_template('login_success.html')
             else:
                 return render_template('404.html', error='Invalid username or password')
